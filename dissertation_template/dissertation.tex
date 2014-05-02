@@ -1,0 +1,118 @@
+% Font options: 10pm, 11pt, 12pt
+% Align headings left instead of center: nocenter
+\documentclass[11pt, nocenter, letter paper, oneside]{book}
+
+%\includeonly{text/introduction} % Use this for editing just one section
+
+\usepackage{indentfirst, amsmath, setspace, amssymb, amsthm}
+
+\usepackage{lipsum} % For placeholder text. Delete this.
+
+\usepackage{natbib}
+\bibliographystyle{apsr2006}
+
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+%%%%%% FONT OPTIONS %%%%%%
+%\usepackage{mathptmx} % Times New Roman
+%\usepackage{mathpazo} % Palatino
+%\usepackage[osf]{mathpazo} % Palatino with old-style numerals
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{graphicx} 
+\usepackage{pgf,tikz}
+\usepackage{pgfplots}
+\usetikzlibrary{arrows,shapes}
+\usetikzlibrary{decorations}
+
+%\usepackage{pdflscape}
+\usepackage{mathtools}
+\usepackage{upgreek} 
+\usepackage{xfrac}
+\usepackage{epstopdf}
+\usepackage{color}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{longtable} 
+\usepackage{verbatim}
+
+\setcounter{tocdepth}{1} % Include Subsections (but not subsubsections) in the TOC
+\usepackage[T1]{fontenc}
+
+\usepackage{pdfpages} % For including the Dissertation Acceptance Certificate
+
+%%%%%% CHAPTER TITLE OPTIONS %%%%%%
+\usepackage{titlesec}
+\definecolor{gray75}{gray}{0.75}
+\newcommand{\hsp}{\hspace{20pt}}
+\titleformat{\chapter}[hang]{\singlespace\LARGE\bfseries}{\thechapter\hsp\textcolor{gray75}{|}\hsp}{0pt}{\LARGE\bfseries} % Title format for numbered chapters
+\titleformat{name=\chapter,numberless}[hang]{\singlespace\LARGE\bfseries}{\textcolor{gray75}{|}\hsp}{0pt}{\LARGE\bfseries} % Title format for unnumbered chapters (intro, contents, bib, etc.)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{prop}{Proposition}
+\newtheorem{cor}{Corollary}
+\newtheorem{thm}{Theorem}
+
+% Margin must be at least 1in on all sides.
+\usepackage[left=1.25in, right=1.25in, top=1.25in, bottom=1.25in, footskip=.25in]{geometry}
+% This makes footnotes appear to be single spaced within each entry, but double spaced between entries.
+\setlength{\footnotesep}{16pt}
+
+\pagestyle{plain}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Include these lines after the defense when you 
+% get a scan of the dissertation acceptance certificate.
+% This makes the DAC the first page, and then adds a blank page
+%
+%	\includepdf[pages={1}]{dissertation_acceptance_certificate.pdf}
+%	\newpage
+%	\thispagestyle{empty}
+%	\mbox{}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Frontmatter with roman numerals
+\frontmatter
+\include{frontmatter/titlepage}
+\include{frontmatter/copyright}
+\phantomsection % Needed to make the ToC links work properly
+\include{frontmatter/abstract}
+
+\singlespacing
+\tableofcontents
+%\listoffigures
+%\listoftables
+
+\doublespacing
+\phantomsection % Needed to make the ToC links work properly
+\include{frontmatter/acknowledgments}
+\mainmatter
+
+\phantomsection % Needed to make the ToC links work properly
+\include{text/introduction}
+\include{text/chapter1}
+\include{text/chapter2}
+\include{text/chapter3}
+
+\appendix
+\include{text/appendix1A}
+\include{text/appendix1B}
+\include{text/appendix2A}
+\include{text/appendix3A}
+
+\backmatter
+
+\singlespacing
+\phantomsection % Needed to make the ToC links work properly
+\addcontentsline{toc}{chapter}{Bibliography}
+\bibliography{dissertation}
+
+\end{document}
